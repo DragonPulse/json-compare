@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="fragments/header :: header-css" />
+
+<style>
+body {
+  margin: 0 100px;
+  font-family: sans-serif;
+}
+p.options label {
+  margin-right: 10px;
+}
+p.options input[type=checkbox] {
+  vertical-align: middle;
+}
+textarea#json-input {
+  width: 100%;
+  height: 200px;
+}
+pre#json-renderer {
+  border: 1px solid #aaa;
+}
+
+</style>
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header" />
+
+	<div id="progressBar"></div>
+	<div class="container">
+	<form >
+		<div class="well well-lg" style="width:100%">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Json File Compare from Server</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="panel panel-default store-wrapper">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-target="#expectedJsonContentDiv">
+											Expected Json
+										</a>
+									</h4>
+								</div>
+								<div id="expectedJsonContentDiv" class="collapse">
+									<div class="panel-body">
+										<pre id="expectedRenderer"></pre></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="panel panel-default store-wrapper">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" href="#actualJsonContentDiv">
+																Actual Json
+										</a>
+									</h4>
+								</div>
+								<div id="actualJsonContentDiv" class="collapse">
+									<div class="card card-body">
+										<pre id="actualRenderer"></pre></pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="panel-body">
+						<div class="panel panel-default store-wrapper">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-target="#serverResultDiv">
+										Server Result
+									</a>
+								</h4>
+							</div>
+							<div id="serverResultDiv" class="panel-collapse collapse in" data-target="#serverResult">
+								<div class="panel-body">
+
+									<pre id="serverResult"></pre></pre></div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+			
+	</div>
+
+		</form>
+
+
+
+	</div>
+
+
+
+
+
+	<div th:replace="fragments/footer :: footer" />
+
+
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/redmond/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="http://www.ok-soft-gmbh.com/jqGrid/jquery.jqGrid-4.4.1/css/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/ui.jqgrid.css" />
+	<link rel="stylesheet" type="text/css"  href="/css/jquery.json-viewer.css" />
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script src="/js/app/servercompare.js"></script>
+	<script src="/js/jquery.json-viewer.js"></script>
+
+</body>
+</html>

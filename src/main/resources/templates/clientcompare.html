@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<div th:replace="fragments/header :: header-css" />
+
+<style>
+body {
+  margin: 0 100px;
+  font-family: sans-serif;
+}
+p.options label {
+  margin-right: 10px;
+}
+p.options input[type=checkbox] {
+  vertical-align: middle;
+}
+textarea#json-input {
+  width: 100%;
+  height: 200px;
+}
+pre#json-renderer {
+  border: 1px solid #aaa;
+}
+
+</style>
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header" />
+
+	<div id="progressBar"></div>
+	<div class="container">
+	<form >
+
+
+		<div class="json-input">
+			<div id="json-panel-left">
+				<label for="json-input-left">
+					<h2>JSON Left</h2>
+				</label>
+				<button class="prettyfy" type="button" title="Pretty print">{ }</button>
+				<textarea id="json-input-left">
+
+      			</textarea>
+				<span class="error-message"></span>
+			</div>
+			<div id="json-panel-right">
+				<label for="json-input-right">
+					<h2>JSON Right</h2>
+				</label>
+				<button class="prettyfy" type="button" title="Pretty print">{ }</button>
+				<textarea id="json-input-right">
+
+      			</textarea>
+				<span class="error-message"></span>
+			</div>
+		</div>
+		<div id="results">
+			<h2>Delta</h2>
+			<label>
+				<input id="show-delta-type-visual" type="radio" name="delta-type" checked>Visual
+			</label>
+			<label>
+				<input id="show-delta-type-json" type="radio" name="delta-type">JSON
+			</label>
+			<label>
+				<input id="show-delta-type-annotated" type="radio" name="delta-type">JSON (Annotated)
+			</label>
+			<div id="delta-panel-visual">
+				<div class="header-options">
+					<input id="showunchanged" type="checkbox">
+					<label for="showunchanged">
+						Show unchanged values
+					</label>
+				</div>
+				<p id="visualdiff">
+				</p>
+			</div>
+			<div id="delta-panel-annotated" style="display: none;">
+				<p id="annotateddiff">
+				</p>
+			</div>
+			<div id="delta-panel-json" style="display: none;">
+				<p>
+					(<span id="jsondifflength"></span>
+					KB)
+				</p>
+				<textarea id="json-delta" readonly>
+      			</textarea>
+				<span class="error-message"></span>
+			</div>
+		</div>
+
+<!--		<button id="compare" type="button">Compare</button>-->
+
+
+
+
+
+<!--		<div class="well well-lg" style="width:100%">-->
+<!--			<div class="panel panel-default">-->
+<!--				<div class="panel-heading">Client Side Json Compare</div>-->
+<!--				<div class="panel-body">-->
+<!--					<div class="row">-->
+<!--						<div class="col-sm-6">-->
+<!--							<div class="panel panel-default store-wrapper">-->
+<!--								<div class="panel-heading">-->
+<!--									<h4 class="panel-title">-->
+<!--										<a data-toggle="collapse" data-target="#expectedJsonContentDiv">-->
+<!--											Expected Json-->
+<!--										</a>-->
+<!--									</h4>-->
+<!--								</div>-->
+<!--								<div id="expectedJsonContentDiv">-->
+<!--									<div class="panel-body">-->
+<!--										<textarea id="expectedJson" style="width:100%" >-->
+<!--										</textarea>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--						<div class="row">-->
+<!--							<div class="col-sm-6">-->
+<!--								<div class="panel panel-default store-wrapper">-->
+<!--									<div class="panel-heading">-->
+<!--										<h4 class="panel-title">-->
+<!--											<a data-toggle="collapse" data-target="#expectedJsonContentDiv">-->
+<!--												Actual Json-->
+<!--											</a>-->
+<!--										</h4>-->
+<!--									</div>-->
+<!--									<div id="actualJsonDiv">-->
+<!--										<div class="panel-body">-->
+<!--										<textarea id="actualJson" style="width:100%">-->
+<!--										</textarea>-->
+<!--										</div>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div>-->
+<!--				<button id="compare" type="button">Compare</button>-->
+
+<!--				<button id="clear" type="button">Clear</button>-->
+<!--			</div>-->
+<!--			</div>-->
+<!--			<hr/>-->
+<!--			<div>-->
+<!--				<p id="results">-->
+<!--				</p>-->
+<!--			</div>-->
+
+
+<!--		</div>-->
+<!--		</div>-->
+		</form>
+	</div>
+
+
+
+
+
+	<div th:replace="fragments/footer :: footer" />
+
+
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/redmond/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/ui.jqgrid.css" />
+	<link rel="stylesheet" type="text/css"  href="/css/html.css" />
+	<link rel="stylesheet" type="text/css" href="https://benjamine.github.io/jsondiffpatch/demo/style.css" />
+
+	<link rel="stylesheet" type="text/css" href="https://benjamine.github.io/jsondiffpatch/formatters-styles/html.css" />
+
+	<link rel="stylesheet" type="text/css" href="https://benjamine.github.io/jsondiffpatch/formatters-styles/annotated.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css" type="text/css" media="screen" />
+	<script type='text/javascript' src="https://cdn.jsdelivr.net/npm/jsondiffpatch/dist/jsondiffpatch.umd.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/javascript/javascript.min.js"></script>
+
+
+
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script src="/js/app/clientcompare.js"></script>
+	<script src="/js/jquery.json-viewer.js"></script>
+
+	<script src="https://benjamine.github.io/jsondiffpatch/demo/demo.js"></script>
+
+
+
+	<script type='text/javascript' src="https://cdn.jsdelivr.net/npm/jsondiffpatch/dist/jsondiffpatch.umd.min.js"></script>
+
+
+</body>
+</html>
